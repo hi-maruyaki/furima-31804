@@ -1,5 +1,5 @@
 ## Users Tabel
-
+|----------|-------|------------------|
 |Column    | Type  |  Options         |
 |----------|-------|------------------|
 |nickname  |string |null:false        |
@@ -9,18 +9,16 @@
 |first-name|string |null:false        |
 |last-kana |string |null:false        |
 |first-kana|string |null:false        |
-|years     |integer|foreign_key: true	|
-|month     |integer|foreign_key: true	|
-|date      |integer|foreign_key: true	|
+|birth_day |date   |null:false      	|
 |----------|-------|------------------|
 
 ### Association
- has_many :items
+has_many :products dependent: :destroy
+belongs_to :destination throught: :destroy
 
+----------------------------- ----------------------------- -----------------------------
 
-------------------------------
-
-## Items Tabel
+## products Tabel
 |------------|---------|-------------------|
 | Column     |Type     | Options           |
 |------------|---------|-------------------|
@@ -37,7 +35,12 @@
 |------------|---------|-------------------|
 
 ### Association
-  has_one user
+  belongs_to :user 
+  belongs_to :category dependent: :destroy   
+  has_many :images 
+
+
+
 ----------------------------- ----------------------------- -----------------------------
 ## address Tabel
 |------------|---------|-------------------|
@@ -55,4 +58,30 @@
 
 ### Association
   belongs_to :items
+  belongs_to :user
+
+----------------------------- ----------------------------- -----------------------------
+
+
+## image image
+|------------|----------|------------------------------|
+|Column	     |   Type   |Options                       |
+|------------|----------|------------------------------|
+|image       |  string  |null: false                   |
+|product_id  |integer   |null: false, foreign_key: true|
+|------------|----------|------------------------------|
+### Association
+  belongs_to :product
+
+----------------------------- ----------------------------- -----------------------------
+
+## image image
+|------------|----------|------------------------------|
+|Column	     |   Type   |Options                       |
+|------------|----------|------------------------------|
+|user_id     |  integer |null: false, foreign_key: true|
+|customer_id |string    |null: false                   |
+|card_id     | string   |null: false                   |
+|------------|----------|------------------------------|
+### Association
   belongs_to :user
