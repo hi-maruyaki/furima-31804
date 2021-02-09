@@ -13,8 +13,8 @@
 |----------|-------|------------------|
 
 ### Association
-has_many :products dependent: :destroy
-belongs_to :destination throught: :destroy
+has_many :products : through :destroy
+belongs_to :destination through: :destroy
 
 ----------------------------- ----------------------------- -----------------------------
 
@@ -36,7 +36,7 @@ belongs_to :destination throught: :destroy
 
 ### Association
   belongs_to :user 
-  belongs_to :category dependent: :destroy   
+  belongs_to :category 
   has_many :images 
 
 
