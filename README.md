@@ -16,6 +16,7 @@
 has_many :products : through :destroy
 belongs_to :destination through: :destroy
 
+
 ----------------------------- ----------------------------- -----------------------------
 
 ## products Tabel
