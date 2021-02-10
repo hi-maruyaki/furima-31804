@@ -1,20 +1,20 @@
-## Users Tabel
-|---------------------------|-------|------------------|
-|Column                     | Type  |  Options         |
-|---------------------------|-------|------------------|
-|nickname                   |string |null:false        |
-|email                      |string |null:false        |
-|encrypted_password         |string |null:false        |
-|last-name                  |string |null:false        |
-|first-name                 |string |null:false        |
-|last-kana                  |string |null:false        |
-|first-kana                 |string |null:false        |
-|birth_day                  |date   |null:false        |
-|---------------------------|-------|------------------|
+    ## Users Tabel
+    |---------------------------|-------|------------------|
+    |Column                     | Type  |  Options         |
+    |---------------------------|-------|------------------|
+    |nickname                   |string |null:false        |
+    |email                      |string |null:false        |
+    |encrypted_password         |string |null:false        |
+    |last-name                  |string |null:false        |
+    |first-name                 |string |null:false        |
+    |last-kana                  |string |null:false        |
+    |first-kana                 |string |null:false        |
+    |birth_day                  |date   |null:false        |
+    |---------------------------|-------|------------------|
 
-### Association
-has_many :products 
-belongs_to :destination 
+    ### Association
+    has_many :products
+    belongs_to :odder
 
 
 ----------------------------- ----------------------------- -----------------------------
@@ -28,7 +28,7 @@ belongs_to :destination
 |category_id    |integer  |foreign_key: true  |
 |states         |integer  |foreign_key: true  |
 |carriage_id    |integer  |foreign_key: true  |
-|prefecture     |integer  |foreign_key: true  |
+|prefecture_id  |integer  |foreign_key: true  |
 |Days_to_ship_id|integer  |foreign_key: true  |
 |price          |integer  |null:false         |
 |shipping_id    |integer  |                   |
@@ -37,6 +37,7 @@ belongs_to :destination
 
 ### Association
   belongs_to :user 
+  belongs_to :odder
 
 ----------------------------- ----------------------------- -----------------------------
 ## address Tabel
