@@ -1,16 +1,16 @@
 ## Users Tabel
-|----------|-------|------------------|
-|Column    | Type  |  Options         |
-|----------|-------|------------------|
-|nickname  |string |null:false        |
-|email     |string |null:false        |
-|paswsword |string |null:false        |
-|last-name |string |null:false        |
-|first-name|string |null:false        |
-|last-kana |string |null:false        |
-|first-kana|string |null:false        |
-|birth_day |date   |null:false      	|
-|----------|-------|------------------|
+|---------------------------|-------|------------------|
+|Column                     | Type  |  Options         |
+|---------------------------|-------|------------------|
+|nickname                   |string |null:false        |
+|email                      |string |null:false        |
+|paswspassword_confirmation |string |null:false        |
+|last-name                  |string |null:false        |
+|first-name                 |string |null:false        |
+|last-kana                  |string |null:false        |
+|first-kana                 |string |null:false        |
+|birth_day                  |date   |null:false        |
+|---------------------------|-------|------------------|
 
 ### Association
 has_many :products : through :destroy
@@ -23,7 +23,6 @@ belongs_to :destination through: :destroy
 |------------|---------|-------------------|
 | Column     |Type     | Options           |
 |------------|---------|-------------------|
-|image       |         |null:false         |
 |name        |string   |null:false         |
 |description |text     |null:false         |
 |category    |integer  |foreign_key: true	 |
@@ -32,7 +31,8 @@ belongs_to :destination through: :destroy
 |prefecture  |integer  |foreign_key: true	 |
 |Days to ship|integer  |foreign_key: true	 |
 |price       |integer  |null:false         |
-|user        |reference|null:false         |
+|shipping_id |integer  |                   |
+|user_id     |reference|null:false         |
 |------------|---------|-------------------|
 
 ### Association
@@ -40,8 +40,20 @@ belongs_to :destination through: :destroy
   belongs_to :category 
   has_many :images 
 
-
-
+|---------------|---------|-------------------|
+|name           |string	null: false|
+|price          |string	null: false|
+|description	  |string	null: false
+|status         |string	null: false
+|size           |string|null: false
+|shipping_cost	|string	null: false
+|shipping_days	|string	null: false
+|prefecture_id	|string	null: false
+|judgment       |string	
+|category_id    |integer	null: false, foreign_key: true
+|brand_id	integer	null: false, foreign_key: true
+|	
+|	integer	null: false, foreign_key: true
 ----------------------------- ----------------------------- -----------------------------
 ## address Tabel
 |------------|---------|-------------------|
@@ -69,7 +81,7 @@ belongs_to :destination through: :destroy
 |Column	     |   Type   |Options                       |
 |------------|----------|------------------------------|
 |image       |  string  |null: false                   |
-|product_id  |integer   |null: false, foreign_key: true|
+|product_id  | string   |                              |
 |------------|----------|------------------------------|
 ### Association
   belongs_to :product
