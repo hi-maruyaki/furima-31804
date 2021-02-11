@@ -14,7 +14,7 @@
 
     ### Association
       has_many :orders
-      belongs_to :order
+      has_many: products
 
 
 ----------------------------- ----------------------------- -----------------------------
@@ -25,14 +25,6 @@
 |---------------|---------|-------------------|
 |name           |string   |null:false         |
 |description    |text     |null:false         |
-|category_id    |integer  |null:false         |
-|states_id      |integer  |null:false         |
-|category_id    |integer  |null:false         |
-|states_id      |integer  |null:false         |
-|carriage_id    |integer  |null:false         |
-|prefecture_id  |integer  |null:false         |
-|days_to_ship_id|integer  |null:false         |
-|shipping_id    |integer  |null:false         |
 |user           |reference|foreign_key: true  |
 
 ### Association
