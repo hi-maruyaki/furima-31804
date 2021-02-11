@@ -1,4 +1,4 @@
-    ## Users Tabel
+    ## Users Table
     |---------------------------|-------|------------------------|
     |Column                     | Type  |  Options               | 
     |---------------------------|-------|------------------------|
@@ -19,8 +19,8 @@
 
 ----------------------------- ----------------------------- -----------------------------
 
-## products Tabel
-|---------------|---------|-------------------|
+## products Table
+
 | Column        |Type     | Options           |
 |---------------|---------|-------------------|
 |name           |string   |null:false         |
@@ -32,37 +32,40 @@
 |Days_to_ship_id|integer  |null:false         |
 |price          |integer  |null:false         |
 |shipping_id    |integer  |null:false         |
-|user           |reference|null:false         |
+|user           |reference|foreign_key: true  |
 
 ### Association
   belongs_to :user  
-  has_one :order  
+  has_one :order
 
 ----------------------------- ----------------------------- -----------------------------
-## address Tabel
+## address Table
 
-|Column      |Type     |Options            |
-|------------|---------|-------------------|
-|postcode    |string   |null:false         |
-|prefecture_id|integer |null:false         |
-|city        |string   |null:false         |
-|address1    |string   |null:false         |
-|address2    |string   |                   |
-|tellphone   |string   |null:false         |
-|------------|---------|-------------------|
+|Column       |Type     |Options            |
+|-------------|---------|-------------------|
+|postcode     |string   |null:false         |
+|prefecture_id|integer  |null:false         |
+|city         |string   |null:false         |
+|address      |string   |null:false         |
+|building_name|string   |                   |
+|tellphone    |string   |null:false         |
+|-------------|---------|-------------------|
 
 ### Association
   belongs_to :items
   belongs_to :user
 
 ----------------------------- ----------------------------- -----------------------------
-## oders Tabel
+## orders Table
 
-|Column      |Type     |Options            |
-|------------|---------|-------------------|
-|user        |reference|null:false         |
-|item        |reference|null:false         |
+|Column      |Type     |Options                 |
+|------------|---------|------------------------|
+|user        |reference|foreign_key: true       |
+|item        |reference|foreign_key: true       |
 
 ### Association
-  belongs_to prodact
+  belongs_to product
   belongs_to user
+
+  references型を使用するのであれば、オプションに外部キー制約を貼りましょう！
+
