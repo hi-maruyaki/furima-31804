@@ -1,87 +1,69 @@
-## Users Tabel
-|----------|-------|------------------|
-|Column    | Type  |  Options         |
-|----------|-------|------------------|
-|nickname  |string |null:false        |
-|email     |string |null:false        |
-|paswsword |string |null:false        |
-|last-name |string |null:false        |
-|first-name|string |null:false        |
-|last-kana |string |null:false        |
-|first-kana|string |null:false        |
-|birth_day |date   |null:false      	|
-|----------|-------|------------------|
+    ## Users Table
+    |---------------------------|-------|------------------------|
+    |Column                     | Type  |  Options               | 
+    |---------------------------|-------|------------------------|
+    |nickname                   |string |null:false              |
+    |email                      |string |null:false ,unique: true|
+    |encrypted_password         |string |null:false              |
+    |last_name                  |string |null:false              |
+    |first_name                 |string |null:false              |
+    |last_kana                  |string |null:false              |
+    |first_kana                 |string |null:false              |
+    |birth_day                  |date   |null:false              |
+    |---------------------------|-------|------------------------|
 
-### Association
-has_many :products dependent: :destroy
-belongs_to :destination throught: :destroy
-
------------------------------ ----------------------------- -----------------------------
-
-## products Tabel
-|------------|---------|-------------------|
-| Column     |Type     | Options           |
-|------------|---------|-------------------|
-|image       |         |null:false         |
-|name        |string   |null:false         |
-|description |text     |null:false         |
-|category    |integer  |foreign_key: true	 |
-|states      |integer  |foreign_key: true	 |
-|carriage    |integer  |foreign_key: true	 |
-|prefecture  |integer  |foreign_key: true	 |
-|Days to ship|integer  |foreign_key: true	 |
-|price       |integer  |null:false         |
-|user        |reference|null:false         |
-|------------|---------|-------------------|
-
-### Association
-  belongs_to :user 
-  belongs_to :category dependent: :destroy   
-  has_many :images 
-
+    ### Association
+      has_many :orders
+      has_many :products
 
 
 ----------------------------- ----------------------------- -----------------------------
-## address Tabel
-|------------|---------|-------------------|
-|Column      |Type     |Options            |
-|------------|---------|-------------------|
-|user        |reference|null:false         |
-|item        |reference|null:false         |
-|postcode    |integer  |null:false         |
-|prefecture  |integer  |foreign_key: true  |
-|city        |string   |null:false         |
-|address1    |string   |null:false         |
-|address2    |string   |                   |
-|tellphone   |string   |null:false         |
-|------------|---------|-------------------|
+
+## products Table
+
+| Column        |Type      | Options           |
+|---------------|----------|-------------------|
+|name           |string    |null:false         |
+|description    |text      |null:false         |
+|user           |references|foreign_key: true  |
+|states_id      |integer   |null:false         |
+|category_id    |integer   |null:false         |
+|carriage_id    |integer   |null:false         |
+|prefecture_id  |integer   |null:false         |
+|days_to_ship_id|integer   |null:false         |
+|price          |integer   |null:false         |
 
 ### Association
-  belongs_to :items
-  belongs_to :user
+  belongs_to :user  
+  has_one :order
 
 ----------------------------- ----------------------------- -----------------------------
+## address Table
+
+|Column        |Type      |Options            |
+|--------------|----------|-------------------|
+|postcode      |string    |null:false         |
+|prefecture_id |integer   |null:false         |
+|city          |string    |null:false         |
+|address       |string    |null:false         |
+|building_name |string    |                   |
+|tellphone     |string    |null:false         |
+|order         |references|foreign_key: true  |
 
 
-## image image
-|------------|----------|------------------------------|
-|Column	     |   Type   |Options                       |
-|------------|----------|------------------------------|
-|image       |  string  |null: false                   |
-|product_id  |integer   |null: false, foreign_key: true|
-|------------|----------|------------------------------|
+### Association
+  belongs_to :order
+  
+   
+  ----------------------------- ----------------------------- -----------------------------
+## orders Table
+
+|Column     |Type       |Options                 |
+|-----------|----------|------------------------|
+|user       |references|foreign_key: true       |
+|item       |references|foreign_key: true       |
+
 ### Association
   belongs_to :product
-
------------------------------ ----------------------------- -----------------------------
-
-## image image
-|------------|----------|------------------------------|
-|Column	     |   Type   |Options                       |
-|------------|----------|------------------------------|
-|user_id     |  integer |null: false, foreign_key: true|
-|customer_id |string    |null: false                   |
-|card_id     | string   |null: false                   |
-|------------|----------|------------------------------|
-### Association
+  has_one :address
   belongs_to :user
