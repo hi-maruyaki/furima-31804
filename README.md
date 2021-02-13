@@ -14,7 +14,7 @@
 
     ### Association
       has_many :orders
-      has_many: products
+      has_many :products
 
 
 ----------------------------- ----------------------------- -----------------------------
@@ -26,6 +26,12 @@
 |name           |string   |null:false         |
 |description    |text     |null:false         |
 |user           |reference|foreign_key: true  |
+|states_id      |integer  |null:false         |
+|category_id    |integer  |null:false         |
+|carriage_id    |integer  |null:false         |
+|prefecture_id  |integer  |null:false         |
+|days_to_ship_id|integer  |null:false         |
+|price          |integer  |null:false         |
 
 ### Association
   belongs_to :user  
@@ -58,6 +64,6 @@
 |item       |reference|foreign_key: true       |
 
 ### Association
-  belongs_to product
-  has_one address
-  belongs_to user
+  belongs_to :product
+  has_one :address
+  belongs_to :user
