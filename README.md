@@ -21,17 +21,17 @@
 
 ## products Table
 
-| Column        |Type     | Options           |
-|---------------|---------|-------------------|
-|name           |string   |null:false         |
-|description    |text     |null:false         |
-|user           |reference|foreign_key: true  |
-|states_id      |integer  |null:false         |
-|category_id    |integer  |null:false         |
-|carriage_id    |integer  |null:false         |
-|prefecture_id  |integer  |null:false         |
-|days_to_ship_id|integer  |null:false         |
-|price          |integer  |null:false         |
+| Column        |Type      | Options           |
+|---------------|----------|-------------------|
+|name           |string    |null:false         |
+|description    |text      |null:false         |
+|user           |references|foreign_key: true  |
+|states_id      |integer   |null:false         |
+|category_id    |integer   |null:false         |
+|carriage_id    |integer   |null:false         |
+|prefecture_id  |integer   |null:false         |
+|days_to_ship_id|integer   |null:false         |
+|price          |integer   |null:false         |
 
 ### Association
   belongs_to :user  
@@ -40,15 +40,15 @@
 ----------------------------- ----------------------------- -----------------------------
 ## address Table
 
-|Column        |Type     |Options            |
-|--------------|---------|-------------------|
-|postcode      |string   |null:false         |
-|prefecture_id |integer  |null:false         |
-|city          |string   |null:false         |
-|address       |string   |null:false         |
-|building_name |string   |                   |
-|tellphone     |string   |null:false         |
-|order         |reference|foreign_key: true  |
+|Column        |Type      |Options            |
+|--------------|----------|-------------------|
+|postcode      |string    |null:false         |
+|prefecture_id |integer   |null:false         |
+|city          |string    |null:false         |
+|address       |string    |null:false         |
+|building_name |string    |                   |
+|tellphone     |string    |null:false         |
+|order         |references|foreign_key: true  |
 
 
 ### Association
@@ -58,10 +58,10 @@
   ----------------------------- ----------------------------- -----------------------------
 ## orders Table
 
-|Column     |Type     |Options                 |
-|-----------|---------|------------------------|
-|user       |reference|foreign_key: true       |
-|item       |reference|foreign_key: true       |
+|Column     |Type       |Options                 |
+|-----------|----------|------------------------|
+|user       |references|foreign_key: true       |
+|item       |references|foreign_key: true       |
 
 ### Association
   belongs_to :product
