@@ -7,7 +7,7 @@ describe User do
   describe 'ユーザー新規登録' do
     context 'ユーザ登録ができる時' do
       it 'すべてのカラムが正しく記述されている!' do
-        @user
+
         expect(@user).to be_valid
       end
     end
@@ -119,6 +119,23 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is invalid"
       end
+
+      it '重複したemailが存在する場合登録できない' do
+        @user.save
+        @another_user = FactoryBot.build(:user, email:@user.email)
+        @another_user.valid?
+        
+        expect(@another_user.errors.full_messages).to include 'Email has already been taken' 
+      end
+
+      it "emailの@がないので" do
+        @user.email = "maruyamagmail.com"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Email is invalid"
+      end
+
     end
   end
 end
+
+
