@@ -3,7 +3,11 @@ class Item < ApplicationRecord
   has_one_attached :image
   
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category, :status, :days_to_ship, :carriage, :prefecture
+  belongs_to :category
+  belongs_to :status
+  belongs_to :days_to_ship
+  belongs_to :carriage
+  belongs_to :prefecture
 
   def was_attached?
     self.image.attached? 
