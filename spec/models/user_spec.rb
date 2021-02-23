@@ -7,13 +7,12 @@ describe User do
   describe 'ユーザー新規登録' do
     context 'ユーザ登録ができる時' do
       it 'すべてのカラムが正しく記述されている!' do
-
         expect(@user).to be_valid
       end
     end
 
     context 'ユーザ登録ができない時' do
-
+      
       it 'nicknameが空だと登録できない' do
         @user.nickname = ''  # nicknameの値を空にする
         @user.valid?
