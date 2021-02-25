@@ -186,12 +186,14 @@
       <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
       <% @items.each do |item| %>
+        <%= link_to item_path(item) do %> 
             <div class="content_post" style="background-image: url(<%= item.image %>);">
-          <%# <p><%= item.text %>
-          <span class="name">
-            <%= item.name %>
-          </span>
-        </div>
+            <span class="name">
+              <%= item.name %>
+            </span>
+            </div>
+        <% end %>
+
       <% end %>
 
   </div>
