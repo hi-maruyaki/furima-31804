@@ -19,35 +19,33 @@ class ItemsController < ApplicationController
     end
   end
 
+
   def show
     @item = Item.find(params[:id])
   end
 
-  before_action :authenticate_user!, only: :edit
   def edit  
-    @item = Item.find(params[:id])
     if @item.user_id != current_user.id 
       redirect_to root_path
     end
-  end
-
-  def destroy
-    item = Item.find(params[:id])
-    item.destroy
-    redirect_to root_path
   end
 
 
   def update
     @item = Item.find(params[:id])
     @item.update(item_params)
-      if @item.save
+      if @item.update
         redirect_to item_path(@item.id)
       else
         render :edit
       end
   end
 
+  # def destroy
+  #   item = Item.find(params[:id])
+  #   item.destroy
+  #   redirect_to root_path
+  # end
 
   private
 
