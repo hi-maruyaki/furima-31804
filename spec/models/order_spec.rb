@@ -13,6 +13,12 @@ RSpec.describe UserOrder, type: :model do
       it 'すべてのカラムが正しく記述されている!' do
         expect(@order).to be_valid
       end
+
+
+      it "建物が空でも登録できない" do
+        @order.building_name = ""
+        @order.valid?
+      end
     end
 
 
@@ -31,16 +37,10 @@ RSpec.describe UserOrder, type: :model do
       end
 
       it 'prefectureが1だと登録できない' do
-        @order.prefecture = '1'
+        @order.prefecture = 1
         @order.valid?
         expect(@order.errors.full_messages).to include "Prefecture must be other than 1"
       end 
-
-      it 'prefectureが空だと登録できない' do
-        @order.prefecture = ''
-        @order.valid?
-        expect(@order.errors.full_messages).to include "Prefecture can't be blank", "Prefecture is not a number"
-      end
 
       it 'prefectureが空だと登録できない' do
         @order.prefecture = ''
@@ -83,11 +83,13 @@ RSpec.describe UserOrder, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include "User can't be blank"
       end
+
       it "item_idは空では登録できない" do
         @order.item_id = ""
         @order.valid?
         expect(@order.errors.full_messages).to include "Item can't be blank"
       end
+
     end
   end
 end
