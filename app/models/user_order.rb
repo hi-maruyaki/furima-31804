@@ -12,7 +12,7 @@ class UserOrder
     validates :tellphone, format: { with: /\A[0][0-9]{10}\z/ }
     validates :item_id
     validates :user_id
-    
+    validates :token
   end
 
 

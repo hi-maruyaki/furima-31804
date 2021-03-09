@@ -2,8 +2,12 @@ require 'rails_helper'
 
 RSpec.describe UserOrder, type: :model do
   before do
-    @order = FactoryBot.build(:user_order)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @order = FactoryBot.build(:user_order, user_id:  @user.id, item_id:  @item.id)
+  sleep(0.5)
   end
+
   describe '注文' do
     context '注文の登録ができる時' do
       it 'すべてのカラムが正しく記述されている!' do
@@ -13,11 +17,11 @@ RSpec.describe UserOrder, type: :model do
 
 
     context '注文が登録ができない時' do
-      
+
       it 'postcodeが空だと登録できない' do
         @order.postcode = ''
         @order.valid?
-        expect(@order.errors.full_messages).to include "Postcode is invalid. Include hyphen(-)"
+        expect(@order.errors.full_messages).to include "Postcode can't be blank","Postcode is invalid. Include hyphen(-)"
       end
 
       it 'postcodeが桁が違うと登録できない' do
@@ -50,13 +54,7 @@ RSpec.describe UserOrder, type: :model do
         expect(@order.errors.full_messages).to include "City can't be blank"
       end
 
-      it 'addressが空だと登録できない' do
-        @order.address = ''
-        @order.valid?
-        expect(@order.errors.full_messages).to include "Address can't be blank"
-      end
-
-      it 'addressが空だと登録できない' do
+      it 'addrbessが空だと登録できない' do
         @order.address = ''
         @order.valid?
         expect(@order.errors.full_messages).to include "Address can't be blank"
@@ -72,6 +70,23 @@ RSpec.describe UserOrder, type: :model do
         @order.tellphone = '080-1234-1234'
         @order.valid?
         expect(@order.errors.full_messages).to include "Tellphone is invalid"
+      end
+                  
+      it 'tokeneが空だと登録できない' do
+        @order.token = ''
+        @order.valid?
+        expect(@order.errors.full_messages).to include "Token can't be blank"
+      end
+
+      it "user_idは空では登録できない" do
+        @order.user_id = ""
+        @order.valid?
+        expect(@order.errors.full_messages).to include "User can't be blank"
+      end
+      it "item_idは空では登録できない" do
+        @order.item_id = ""
+        @order.valid?
+        expect(@order.errors.full_messages).to include "Item can't be blank"
       end
     end
   end
