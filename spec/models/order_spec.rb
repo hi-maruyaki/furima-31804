@@ -15,7 +15,7 @@ RSpec.describe UserOrder, type: :model do
       end
 
 
-      it "建物が空でも登録できない" do
+      it "建物が空でも登録できる" do
         @order.building_name = ""
         @order.valid?
       end
@@ -32,6 +32,12 @@ RSpec.describe UserOrder, type: :model do
 
       it 'postcodeが桁が違うと登録できない' do
         @order.postcode = '123-124'
+        @order.valid?
+        expect(@order.errors.full_messages).to include "Postcode is invalid. Include hyphen(-)"
+      end
+      
+      it 'postcodeが桁が違うと登録できない' do
+        @order.postcode = '1234567'
         @order.valid?
         expect(@order.errors.full_messages).to include "Postcode is invalid. Include hyphen(-)"
       end
@@ -69,6 +75,13 @@ RSpec.describe UserOrder, type: :model do
       it 'tellphoneが080-1234-1234だと登録できない' do
         @order.tellphone = '080-1234-1234'
         @order.valid?
+        expect(@order.errors.full_messages).to include "Tellphone is invalid"
+      end
+
+      it 'tellphoneが0123456789012だと登録できない' do
+        @order.tellphone = '0123456789012'
+        @order.valid?
+        # binding.pry
         expect(@order.errors.full_messages).to include "Tellphone is invalid"
       end
                   
