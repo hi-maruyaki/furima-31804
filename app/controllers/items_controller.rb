@@ -55,9 +55,8 @@ class ItemsController < ApplicationController
   end
 
   def access
-    if @item.user_id != current_user.id 
+    if @item.user_id != current_user.id || @item.order != nil
       redirect_to root_path
     end
   end
-
 end
